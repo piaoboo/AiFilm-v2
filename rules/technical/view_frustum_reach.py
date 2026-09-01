@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 
 def check_view_frustum_reach(model):
@@ -21,13 +21,13 @@ def check_view_frustum_reach(model):
     return [(Severity.OK, "视锥可达性验证(简化版)")]
 
 
-rule_view_frustum_reach = technical_rule(
+rule_view_frustum_reach = RuleCard(
     id="R046",
     name="视锥可达性",
-    rule=check_view_frustum_reach,
-    validate=lambda output: output,
+    category=RuleCategory.TECHNICAL,
     severity=Severity.WARN,
-    description="检查视锥可达性",
     priority=50,
+    description="检查视锥可达性",
+    rule=check_view_frustum_reach,
     version="1.0.0",
 )

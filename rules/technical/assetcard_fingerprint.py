@@ -20,7 +20,7 @@ import re
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 # §E 六维槽位及其别名
 E_SLOTS = [
@@ -82,20 +82,20 @@ def check_assetcard_fingerprint(model):
 
 
 # 创建规则卡片
-rule_assetcard_fingerprint = technical_rule(
+rule_assetcard_fingerprint = RuleCard(
     id="R015",
     name="资产卡指纹完整性",
-    rule=check_assetcard_fingerprint,
-    validate=lambda output: output,
+    category=RuleCategory.TECHNICAL,
     severity=Severity.WARN,
+    priority=70,
     description="检查资产卡 §E 全局视觉指纹段的六维完整性",
+    rule=check_assetcard_fingerprint,
     examples=[
         '✅ §E 包含六维：构图节奏、色彩调性、镜头质感、光影氛围、方言/题材负向、关键帧锚定',
         '⚠️ §E 缺失维度：方言/题材负向 → WARN'
     ],
     rationale="缺维会导致每条 prompt 临时发明风格，跨条不一致",
     references=["AiFilm-pipeline/code/validators.py:_g30_assetcard_fingerprint"],
-    priority=70,
     version="1.0.0",
 )
 

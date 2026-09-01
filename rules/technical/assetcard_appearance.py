@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 
 def check_assetcard_appearance(model):
@@ -21,13 +21,13 @@ def check_assetcard_appearance(model):
     return [(Severity.OK, "资产卡外观验证(简化版)")]
 
 
-rule_assetcard_appearance = technical_rule(
+rule_assetcard_appearance = RuleCard(
     id="R037",
     name="资产卡外观",
-    rule=check_assetcard_appearance,
-    validate=lambda output: output,
+    category=RuleCategory.TECHNICAL,
     severity=Severity.WARN,
-    description="检查资产卡外观描述完整性",
     priority=50,
+    description="检查资产卡外观描述完整性",
+    rule=check_assetcard_appearance,
     version="1.0.0",
 )

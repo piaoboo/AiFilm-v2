@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 
 def check_scene_roster_completeness(model):
@@ -21,13 +21,13 @@ def check_scene_roster_completeness(model):
     return [(Severity.OK, "场景花名册验证(简化版)")]
 
 
-rule_scene_roster_completeness = technical_rule(
+rule_scene_roster_completeness = RuleCard(
     id="R043",
     name="场景花名册完整性",
-    rule=check_scene_roster_completeness,
-    validate=lambda output: output,
+    category=RuleCategory.TECHNICAL,
     severity=Severity.WARN,
-    description="检查场景花名册完整性",
     priority=50,
+    description="检查场景花名册完整性",
+    rule=check_scene_roster_completeness,
     version="1.0.0",
 )

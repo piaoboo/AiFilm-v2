@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 # Loop 指标必需字段
 LOOP_METRICS_FIELDS = [
@@ -73,11 +73,11 @@ def check_loop_metrics(model):
 
 
 # 创建规则卡片
-rule_loop_metrics = technical_rule(
+rule_loop_metrics = RuleCard(
     id="R027",
     name="Loop 经济性指标",
+    category=RuleCategory.TECHNICAL,
     rule=check_loop_metrics,
-    validate=lambda output: output,
     severity=Severity.WARN,
     description="检查 Loop 循环次数是否经济",
     examples=[

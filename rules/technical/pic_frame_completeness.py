@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 
 def check_pic_frame_completeness(model):
@@ -21,13 +21,13 @@ def check_pic_frame_completeness(model):
     return [(Severity.OK, "图片帧资产验证(简化版)")]
 
 
-rule_pic_frame_completeness = technical_rule(
+rule_pic_frame_completeness = RuleCard(
     id="R042",
     name="图片帧资产完整性",
-    rule=check_pic_frame_completeness,
-    validate=lambda output: output,
+    category=RuleCategory.TECHNICAL,
     severity=Severity.WARN,
-    description="检查图片帧资产完整性",
     priority=50,
+    description="检查图片帧资产完整性",
+    rule=check_pic_frame_completeness,
     version="1.0.0",
 )

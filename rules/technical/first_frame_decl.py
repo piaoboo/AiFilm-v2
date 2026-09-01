@@ -16,7 +16,7 @@ import re
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 
 def check_first_frame_decl(model):
@@ -75,11 +75,11 @@ def check_first_frame_decl(model):
 
 
 # 创建规则卡片
-rule_first_frame_decl = technical_rule(
+rule_first_frame_decl = RuleCard(
     id="R047",
     name="首帧声明",
+    category=RuleCategory.TECHNICAL,
     rule=check_first_frame_decl,
-    validate=lambda output: output,
     severity=Severity.WARN,
     description="检查首帧/尾帧声明的位置与编号",
     examples=[

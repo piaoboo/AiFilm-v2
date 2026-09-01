@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 
 def check_empty_plate_supply(model):
@@ -21,13 +21,13 @@ def check_empty_plate_supply(model):
     return [(Severity.OK, "空板供给验证(简化版)")]
 
 
-rule_empty_plate_supply = technical_rule(
+rule_empty_plate_supply = RuleCard(
     id="R045",
     name="空板供给",
-    rule=check_empty_plate_supply,
-    validate=lambda output: output,
+    category=RuleCategory.TECHNICAL,
     severity=Severity.WARN,
-    description="检查空板供给",
     priority=50,
+    description="检查空板供给",
+    rule=check_empty_plate_supply,
     version="1.0.0",
 )

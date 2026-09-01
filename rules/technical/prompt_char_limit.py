@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 # prompt 字符限制
 PROMPT_CHAR_LIMIT = 15000
@@ -64,11 +64,11 @@ def check_prompt_char_limit(model):
 
 
 # 创建规则卡片
-rule_prompt_char_limit = technical_rule(
+rule_prompt_char_limit = RuleCard(
     id="R029",
     name="prompt 字符长度限制",
+    category=RuleCategory.TECHNICAL,
     rule=check_prompt_char_limit,
-    validate=lambda output: output,
     severity=Severity.WARN,
     description="检查 prompt 总字符数是否接近 15,000 上限",
     examples=[

@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 # 签名必需字段
 SIGNATURE_FIELDS = [
@@ -70,11 +70,11 @@ def check_signature(model):
 
 
 # 创建规则卡片
-rule_signature = technical_rule(
+rule_signature = RuleCard(
     id="R017",
     name="版权署名",
+    category=RuleCategory.TECHNICAL,
     rule=check_signature,
-    validate=lambda output: output,
     severity=Severity.FAIL,
     description="检查视听签名块的8字段完整性",
     examples=[

@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, Severity, RuleCategory
 
 
 def check_assetcard_voice(model):
@@ -21,13 +21,13 @@ def check_assetcard_voice(model):
     return [(Severity.OK, "资产卡声音验证(简化版)")]
 
 
-rule_assetcard_voice = technical_rule(
+rule_assetcard_voice = RuleCard(
     id="R038",
     name="资产卡声音",
-    rule=check_assetcard_voice,
-    validate=lambda output: output,
+    category=RuleCategory.TECHNICAL,
     severity=Severity.WARN,
-    description="检查资产卡声音描述完整性",
     priority=50,
+    description="检查资产卡声音描述完整性",
+    rule=check_assetcard_voice,
     version="1.0.0",
 )
