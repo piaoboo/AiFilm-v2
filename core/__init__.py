@@ -5,6 +5,7 @@ AiFilm V2.0 Core Module
 - RuleCard: 规则卡片基类
 - RuleEngine: 规则引擎
 - ContextManager: Context 管理器
+- Pipeline: 生成管线
 
 版本: v0.1.0
 日期: 2026-09-01
@@ -30,6 +31,8 @@ from .context_manager import (
     LoadingStrategy,
 )
 
+from .pipeline import Pipeline
+
 __version__ = "0.1.0"
 
 __all__ = [
@@ -49,4 +52,6 @@ __all__ = [
     "ContextManager",
     "ContextBudget",
     "LoadingStrategy",
+    # Pipeline
+    "Pipeline",
 ]

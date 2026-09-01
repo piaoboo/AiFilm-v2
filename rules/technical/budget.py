@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from core import technical_rule, Severity
+from core import RuleCard, RuleCategory, Severity
 
 def check_budget(model):
     """检查字数预算"""
@@ -24,12 +24,13 @@ def check_budget(model):
 
     return [(Severity.OK, f"字数预算正常: {zh_used}/{zh_budget}")]
 
-rule_budget = technical_rule(
+rule_budget = RuleCard(
     id="R008",
     name="预算管理",
+    category=RuleCategory.TECHNICAL,
     rule=check_budget,
     validate=lambda output: output,
-    severity=Severity.WARN,
+    severity=Severity.WARN,  # 预算是软闸
     description="验证字数预算不超限",
     priority=50,
     version="1.0.0",
